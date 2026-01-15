@@ -1,4 +1,5 @@
 import 'dart:async';
+import 'dart:developer';
 import 'dart:io';
 
 import 'package:clean_architecture/core/commondomain/entities/based_api_result/api_result_model.dart';
@@ -21,17 +22,16 @@ class HttpRequestContext {
 
   Map<String, String> _sharedDefaultHeader = <String, String>{};
 
-  Future<void> initSharedDefaultHeader(
-      [String contentValue = contentTypeValue]) async {
+  Future<void> initSharedDefaultHeader([
+    String contentValue = contentTypeValue,
+  ]) async {
     _sharedDefaultHeader = <String, String>{};
-    _sharedDefaultHeader.addAll(<String, String>{
-      contentTypeKey: contentValue,
-    });
+    _sharedDefaultHeader.addAll(<String, String>{contentTypeKey: contentValue});
   }
 
   Future<bool> _getConnectionState() async {
-    final bool _result = await connectivityCheckerHelper.checkConnectivity();
-    return _result;
+    final bool result = await connectivityCheckerHelper.checkConnectivity();
+    return result;
   }
 
   Future<ApiResultModel<http.Response>> makeRequest({
@@ -44,14 +44,14 @@ class HttpRequestContext {
     _sharedDefaultHeader.addAll(headers);
     if (await _getConnectionState()) {
       try {
-        print('=====baseUrl====>$baseUrl');
-        print('====uri=====>$uri');
+        log('=====baseUrl====>$baseUrl');
+        log('====uri=====>$uri');
 
-        final String _url = '$baseUrl$uri';
-        print('=========>$_url');
+        final String url = '$baseUrl$uri';
+        log('=========>$url');
 
         return httpRequestStrategy.executeRequest(
-          uri: _url,
+          uri: url,
           headers: _sharedDefaultHeader,
           requestData: requestData,
         );

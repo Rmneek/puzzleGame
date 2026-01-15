@@ -13,4 +13,8 @@ Color blueF3F6F8 = const Color(0xFFF3F6F8);
 Color redCF3A3A = const Color(0xFFCF3A3A);
 Color greyE5E5EA = const Color(0xFFE5E5EA);
 
-
+const Color primary = Color(0xFF6C5CE7);
+const Color accent = Color(0xFFFFD166);
+const Color background = Color(0xFFF5F6FA);
+const Color surface = Colors.white;
+const Color textDark = Color(0xFF2D3436);

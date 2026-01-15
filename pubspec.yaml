@@ -28,6 +28,9 @@ dependencies:
   flutter_svg: ^2.2.1
   lottie: ^3.3.2
   objectbox_flutter_libs: ^5.0.0
+  confetti: ^0.8.0
+  shared_preferences: ^2.5.4
+  audioplayers: ^6.5.1
   
   
   
@@ -48,6 +51,7 @@ flutter:
   uses-material-design: true
   assets:
     - assets/
+    - assets/sounds/
 fonts:
     - family: PoppinsBold
       fonts:

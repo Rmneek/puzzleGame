@@ -5,15 +5,17 @@ import 'package:flutter/material.dart';
 
 class BaseResponsiveWidget extends StatelessWidget {
   const BaseResponsiveWidget({
-    Key? key,
+    super.key,
     required this.buildWidget,
     this.initializeConfig = false,
-  }) : super(key: key);
+  });
 
   final Widget Function(
-      BuildContext context,
-      ResponsiveUiConfig responsiveUiConfig,
-      AppConfigurations appConfigurations) buildWidget;
+    BuildContext context,
+    ResponsiveUiConfig responsiveUiConfig,
+    AppConfigurations appConfigurations,
+  )
+  buildWidget;
   final bool initializeConfig;
 
   @override
