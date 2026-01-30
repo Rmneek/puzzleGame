@@ -1,10 +1,7 @@
-import 'package:clean_architecture/core/utils/values/colors.dart';
+import 'package:word_puzzle/core/utils/values/colors.dart';
 import 'package:flutter/material.dart';
 
-TextStyle poppinsBold = TextStyle(
-  color: white,
-  fontFamily: 'PoppinsBold',
-);
+TextStyle poppinsBold = TextStyle(color: white, fontFamily: 'PoppinsBold');
 TextStyle poppinsBoldItalic = TextStyle(
   color: white,
   fontFamily: 'PoppinsBoldItalic',
@@ -17,10 +14,7 @@ TextStyle poppinsExtraBoldItalic = TextStyle(
   color: white,
   fontFamily: 'PoppinsExtraBoldItalic',
 );
-TextStyle poppinsMedium = TextStyle(
-  color: white,
-  fontFamily: 'PoppinsMedium',
-);
+TextStyle poppinsMedium = TextStyle(color: white, fontFamily: 'PoppinsMedium');
 TextStyle poppinsMediumItalic = TextStyle(
   color: white,
   fontFamily: 'PoppinsMediumItalic',

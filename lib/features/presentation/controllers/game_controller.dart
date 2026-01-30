@@ -1,68 +1,125 @@
-import 'package:clean_architecture/features/data/repositories/game_repository.dart';
-import 'package:clean_architecture/features/domain/repositories/leaderboard_repository.dart';
-import 'package:clean_architecture/features/presentation/controllers/sound_service.dart';
-import 'package:confetti/confetti.dart';
 import 'package:flutter/material.dart';
 
+enum BackgroundTheme { sky, night, forest }
+
+enum TutorialStep { makeWord, showLevel, showScore, done }
+
+class GameLevel {
+  final List<String> letters;
+  final List<String> words;
+  GameLevel({required this.letters, required this.words});
+}
+
+class LetterNode {
+  String char;
+  final Offset offset;
+  bool selected = false;
+  LetterNode(this.char, this.offset);
+}
+
 class GameController extends ChangeNotifier {
-  bool isCorrect = false;
-
-  // celebration controller
-  final ConfettiController confettiController = ConfettiController(
-    duration: Duration(seconds: 2),
-  );
-
-  void celebrate() => confettiController.play();
-  @override
-  void dispose() {
-    super.dispose();
-    return confettiController.dispose();
+  BackgroundTheme theme = BackgroundTheme.sky;
+  void setTheme(BackgroundTheme t) {
+    theme = t;
+    notifyListeners();
   }
 
-  // merged game controller
+  int tutorialPlayCount = 0;
+  final int maxTutorialPlays = 5;
+int makeWordRuns = 0;
+final int maxMakeWordRuns = 4;
 
-  final GameRepository repo = GameRepository();
-  final ConfettiController confetti = ConfettiController(
-    duration: Duration(seconds: 2),
-  );
+  bool get hasTutorialPlayed => tutorialPlayCount >= maxTutorialPlays;
+
+  void markTutorialPlayedOnce() {
+    tutorialPlayCount++;
+    notifyListeners();
+  }
+
+  TutorialStep tutorialStep = TutorialStep.makeWord;
+
+  void advanceTutorial() {
+    switch (tutorialStep) {
+      case TutorialStep.makeWord:
+           makeWordRuns++;
+      if (makeWordRuns >= maxMakeWordRuns) {
+        tutorialStep = TutorialStep.showLevel;
+      }
+        break;
+      case TutorialStep.showLevel:
+        tutorialStep = TutorialStep.showScore;
+        break;
+      case TutorialStep.showScore:
+        tutorialStep = TutorialStep.done;
+        break;
+      case TutorialStep.done:
+        break;
+    }
+    notifyListeners();
+  }
+
+  bool showLevelCompleteUI = false;
+
+  void completeLevel() {
+    showLevelCompleteUI = true;
+    notifyListeners();
+  }
+
+  void proceedNext(BuildContext context) {
+    showLevelCompleteUI = false;
+
+    if (levelIndex < levels.length - 1) {
+      nextLevel();
+    }
+
+    notifyListeners();
+  }
+
+  final levels = [
+    GameLevel(letters: ["D", "O", "G"], words: ["DOG", "GOD", "ODG"]),
+    GameLevel(letters: ["C", "A", "T"], words: ["CAT", "ACT", "TAC"]),
+    GameLevel(letters: ["M", "O", "O", "N"], words: ["MOON", "MONO", "NOOM"]),
+  ];
+  void shuffleLetters() {
+    level.letters.shuffle();
+    notifyListeners();
+  }
 
   int levelIndex = 0;
-  List<String?> slotsdata = [];
-  List<String> letters = [];
+  String input = "";
+  int score = 0;
+  bool levelCompleted = false;
+  final Set<String> foundWords = {};
 
-  GameController() {
-    loadLevel();
-  }
+  GameLevel get level => levels[levelIndex];
 
-  void loadLevel() {
-    final level = repo.levels[levelIndex];
-    slotsdata = List.filled(level.word.length, null);
-    letters = List.from(level.letters);
+  void addLetter(String c) {
+    input += c;
     notifyListeners();
   }
 
-  void placeLetter(String letter, int index) {
-    slotsdata[index] = letter;
-    notifyListeners();
-    SoundService.playDrop();
-    checkWin();
-  }
-
-  void checkWin() {
-    final formed = slotsdata.join();
-    if (formed == repo.levels[levelIndex].word) {
-      confetti.play();
-      final leaderboardRepo = LeaderboardRepository();
-      leaderboardRepo.addScore("Player", levelIndex + 1);
-      SoundService.playWin();
-      Future.delayed(Duration(seconds: 2), nextLevel);
+  void submit() {
+    if (level.words.contains(input) && !foundWords.contains(input)) {
+      foundWords.add(input);
+      score += 50;
+      if (foundWords.length == level.words.length) {
+        levelCompleted = true;
+        completeLevel();
+        return;
+      }
     }
+    input = "";
+    notifyListeners();
   }
 
   void nextLevel() {
-    if (levelIndex < repo.levels.length - 1) {
+    if (levelIndex < levels.length - 1) {
       levelIndex++;
-      loadLevel();
+      tutorialStep = TutorialStep.done;
+      foundWords.clear();
+      input = "";
+      levelCompleted = false;
+      notifyListeners();
     }
   }
 }

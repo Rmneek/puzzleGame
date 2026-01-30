@@ -1,4 +1,4 @@
-import 'package:clean_architecture/features/domain/entities/leader_board_entity.dart';
+import 'package:word_puzzle/features/domain/entities/leader_board_entity.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class LeaderboardRepository {

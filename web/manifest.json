@@ -1,6 +1,6 @@
 {
-    "name": "clean_architecture",
-    "short_name": "clean_architecture",
+    "name": "word_puzzle",
+    "short_name": "word_puzzle",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

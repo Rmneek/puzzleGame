@@ -1,4 +1,4 @@
-import 'package:clean_architecture/features/domain/entities/word_level.dart';
+import 'package:word_puzzle/features/domain/entities/word_level.dart';
 
 final WordLevel mockLevels = WordLevel(
   level: 1,

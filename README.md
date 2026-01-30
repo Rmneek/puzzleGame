@@ -1,4 +1,4 @@
-# clean_architecture
+# word_puzzle
 
 A new Flutter project.
 

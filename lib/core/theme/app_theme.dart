@@ -1,14 +1,14 @@
 import 'package:flutter/material.dart';
-
 class AppTheme {
-  static ThemeData theme = ThemeData(
-    fontFamily: 'Poppins',
-    scaffoldBackgroundColor: Color(0xFFF4F5FA),
-    primaryColor: Color(0xFF6C5CE7),
-    appBarTheme: AppBarTheme(
-      backgroundColor: Colors.transparent,
-      elevation: 0,
-      foregroundColor: Colors.black,
-    ),
-  );
+  static ThemeData cyberNeon() {
+    return ThemeData.dark().copyWith(
+      scaffoldBackgroundColor: const Color(0xFF0B0F1A),
+      textTheme: const TextTheme(
+        headlineSmall: TextStyle(
+          color: Colors.cyanAccent,
+          fontWeight: FontWeight.bold,
+        ),
+      ),
+    );
+  }
 }

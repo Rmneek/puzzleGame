@@ -1,4 +1,4 @@
-import 'package:clean_architecture/features/domain/entities/game_progress.dart';
+import 'package:word_puzzle/features/domain/entities/game_progress.dart';
 
 class AdvanceLevelUseCase {
   GameProgress call(GameProgress progress) {

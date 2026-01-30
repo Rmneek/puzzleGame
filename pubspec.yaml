@@ -1,4 +1,4 @@
-name: clean_architecture
+name: word_puzzle
 description: "A new Flutter project."
 publish_to: 'none' 
 version: 1.0.0+1
@@ -52,6 +52,8 @@ flutter:
   assets:
     - assets/
     - assets/sounds/
+    - assets/backgrounds/
+
 fonts:
     - family: PoppinsBold
       fonts:

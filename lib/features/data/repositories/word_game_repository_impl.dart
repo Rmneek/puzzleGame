@@ -1,4 +1,4 @@
-import 'package:clean_architecture/features/domain/repositories/word_game_repository.dart';
+import 'package:word_puzzle/features/domain/repositories/word_game_repository.dart';
 
 class WordGameRepositoryImpl implements WordGameRepository {
   @override

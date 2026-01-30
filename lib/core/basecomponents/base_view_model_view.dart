@@ -1,10 +1,10 @@
-import 'package:clean_architecture/core/basecomponents/base_responsive_widget.dart';
-import 'package:clean_architecture/core/basecomponents/base_view_model.dart';
-import 'package:clean_architecture/core/utils/constants/app_constants.dart';
-import 'package:clean_architecture/core/utils/helpers/app_configurations_helper/app_configurations_helper.dart';
-import 'package:clean_architecture/core/utils/helpers/connectivity_helper/connectivity_helper/connectivity_checker_helper.dart';
-import 'package:clean_architecture/core/utils/helpers/extension_functions/size_extension.dart';
-import 'package:clean_architecture/core/utils/helpers/responsive_ui_helper/responsive_config.dart';
+import 'package:word_puzzle/core/basecomponents/base_responsive_widget.dart';
+import 'package:word_puzzle/core/basecomponents/base_view_model.dart';
+import 'package:word_puzzle/core/utils/constants/app_constants.dart';
+import 'package:word_puzzle/core/utils/helpers/app_configurations_helper/app_configurations_helper.dart';
+import 'package:word_puzzle/core/utils/helpers/connectivity_helper/connectivity_helper/connectivity_checker_helper.dart';
+import 'package:word_puzzle/core/utils/helpers/extension_functions/size_extension.dart';
+import 'package:word_puzzle/core/utils/helpers/responsive_ui_helper/responsive_config.dart';
 import 'package:connectivity_plus/connectivity_plus.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';

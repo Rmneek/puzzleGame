@@ -1,13 +1,12 @@
 import 'dart:developer';
 
-import 'package:clean_architecture/core/di/app_component/app_component.dart';
-import 'package:clean_architecture/core/theme/app_theme.dart';
-import 'package:clean_architecture/core/utils/helpers/app_flavor_helper/app_flavors_helper.dart';
-import 'package:clean_architecture/core/utils/helpers/app_flavor_helper/environment_config.dart';
-import 'package:clean_architecture/features/presentation/controllers/game_controller.dart';
-import 'package:clean_architecture/features/presentation/screens/tutorial_page.dart';
-import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:word_puzzle/core/di/app_component/app_component.dart';
+import 'package:word_puzzle/core/utils/helpers/app_flavor_helper/app_flavors_helper.dart';
+import 'package:word_puzzle/core/utils/helpers/app_flavor_helper/environment_config.dart';
+import 'package:word_puzzle/features/presentation/controllers/game_controller.dart';
+import 'package:word_puzzle/features/presentation/screens/game_level.dart';
+import 'package:flutter/material.dart';
 
 Future<void> main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -40,11 +39,11 @@ class _MyAppState extends State<MyApp> {
       providers: [
         ChangeNotifierProvider.value(value: locator<GameController>()),
       ],
-      child: MaterialApp(
-        debugShowCheckedModeBanner: false,
-        theme: AppTheme.theme,
-        home: TutorialPage(),
-      ),
+      child:
+          MaterialApp(
+            debugShowCheckedModeBanner: false,
+            home: const GameScreen(),
+          ),
     );
   }
 }

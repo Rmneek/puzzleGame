@@ -1,5 +1,5 @@
-import 'package:clean_architecture/core/utils/values/colors.dart';
-import 'package:clean_architecture/features/presentation/controllers/sound_service.dart';
+import 'package:word_puzzle/core/utils/values/colors.dart';
+import 'package:word_puzzle/features/presentation/controllers/sound_service.dart';
 import 'package:flutter/material.dart';
 
 class LetterTile extends StatelessWidget {

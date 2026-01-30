@@ -1,9 +1,9 @@
 import 'dart:async';
 
-import 'package:clean_architecture/core/commondomain/entities/based_api_result/api_result_model.dart';
-import 'package:clean_architecture/core/commondomain/entities/based_api_result/api_result_state.dart';
-import 'package:clean_architecture/core/commondomain/entities/based_api_result/error_result_model.dart';
-import 'package:clean_architecture/core/commondomain/usecases/base_params_usecase.dart';
+import 'package:word_puzzle/core/commondomain/entities/based_api_result/api_result_model.dart';
+import 'package:word_puzzle/core/commondomain/entities/based_api_result/api_result_state.dart';
+import 'package:word_puzzle/core/commondomain/entities/based_api_result/error_result_model.dart';
+import 'package:word_puzzle/core/commondomain/usecases/base_params_usecase.dart';
 import 'package:flutter/cupertino.dart';
 
 class BaseViewModel extends ChangeNotifier {

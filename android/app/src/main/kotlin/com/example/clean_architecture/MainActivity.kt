@@ -1,4 +1,4 @@
-package com.example.clean_architecture
+package com.example.word_puzzle
 
 import io.flutter.embedding.android.FlutterActivity
 

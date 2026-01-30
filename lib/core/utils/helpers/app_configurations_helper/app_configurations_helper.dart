@@ -1,13 +1,12 @@
-import 'package:clean_architecture/core/di/app_component/app_component.dart';
-import 'package:clean_architecture/core/utils/helpers/app_flavor_helper/app_flavors_helper.dart';
-import 'package:clean_architecture/core/utils/helpers/app_theme_helper/custom_theme_data.dart';
-import 'package:clean_architecture/core/utils/values/colors.dart';
+import 'package:word_puzzle/core/di/app_component/app_component.dart';
+import 'package:word_puzzle/core/utils/helpers/app_flavor_helper/app_flavors_helper.dart';
+import 'package:word_puzzle/core/utils/helpers/app_theme_helper/custom_theme_data.dart';
+import 'package:word_puzzle/core/utils/values/colors.dart';
 import 'package:injectable/injectable.dart';
 
 @singleton
 class AppConfigurations {
-  // String? baseUrl = locator<AppFlavorsHelper>().baseUrl;
-    String? get baseUrl => locator<AppFlavorsHelper>().baseUrl;
+  String? get baseUrl => locator<AppFlavorsHelper>().baseUrl;
   CustomThemeData appTheme = CustomThemeData(
     buttonEnabledColor: blue3E97C8,
     buttonDisabledColor: blueD8E7F2,

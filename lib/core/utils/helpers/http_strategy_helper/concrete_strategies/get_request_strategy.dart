@@ -1,11 +1,10 @@
 import 'dart:async';
 
-
-import 'package:clean_architecture/core/commondomain/entities/based_api_result/api_result_model.dart';
-import 'package:clean_architecture/core/utils/constants/app_constants.dart';
-import 'package:clean_architecture/core/utils/helpers/extension_functions/extension_functions.dart';
-import 'package:clean_architecture/core/utils/helpers/extension_functions/http_response_extensions.dart';
-import 'package:clean_architecture/core/utils/helpers/http_strategy_helper/http_request_strategy.dart';
+import 'package:word_puzzle/core/commondomain/entities/based_api_result/api_result_model.dart';
+import 'package:word_puzzle/core/utils/constants/app_constants.dart';
+import 'package:word_puzzle/core/utils/helpers/extension_functions/extension_functions.dart';
+import 'package:word_puzzle/core/utils/helpers/extension_functions/http_response_extensions.dart';
+import 'package:word_puzzle/core/utils/helpers/http_strategy_helper/http_request_strategy.dart';
 import 'package:http/http.dart' as http;
 
 class GetRequestStrategy implements HttpRequestStrategy {
