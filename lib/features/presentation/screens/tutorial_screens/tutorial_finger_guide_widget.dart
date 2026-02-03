@@ -18,8 +18,10 @@ class _TutorialFingerGuideState extends State<TutorialFingerGuide>
   late AnimationController _controller;
   late Animation<double> _progress;
   void _onFinished() {
-    context.read<GameController>().submit();
-    context.read<GameController>().advanceTutorial();
+    final game = context.read<GameController>();
+    game.submit();
+    game.advanceTutorial();
+    game.input = '';
   }
 
   @override

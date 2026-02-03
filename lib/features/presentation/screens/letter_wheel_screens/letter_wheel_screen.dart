@@ -2,6 +2,7 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:word_puzzle/features/domain/entities/letter_node.dart';
 import 'package:word_puzzle/features/presentation/controllers/game_controller.dart';
 import 'package:word_puzzle/features/presentation/screens/custom_paint_screens/wheel_painter.dart';
 
@@ -120,7 +121,8 @@ class LetterWheelState extends State<LetterWheel>
   }
 
   void _onPanUpdate(DragUpdateDetails d) {
-    if (tutorialMode) return;
+    final game = context.read<GameController>();
+    if (tutorialMode || game.isTutorialRunning) return;
 
     final box = context.findRenderObject() as RenderBox;
     final local =
@@ -138,7 +140,8 @@ class LetterWheelState extends State<LetterWheel>
   }
 
   void _onPanEnd(DragEndDetails d) {
-    if (tutorialMode) return;
+    final game = context.read<GameController>();
+    if (tutorialMode || game.isTutorialRunning) return;
 
     context.read<GameController>().submit();
     _reset();
@@ -157,7 +160,7 @@ class LetterWheelState extends State<LetterWheel>
     _isRunningTutorial = true;
     tutorialNodes.clear();
     final game = context.read<GameController>();
-
+    game.input = '';
     for (final c in word.split('')) {
       final node = nodes.firstWhere((n) => n.char == c && !n.selected);
       node.selected = true;
@@ -165,12 +168,13 @@ class LetterWheelState extends State<LetterWheel>
       tutorialNodes.add(node);
       game.addLetter(c);
       setState(() {});
+      game.input = '';
       await Future.delayed(const Duration(milliseconds: 400));
     }
 
     await Future.delayed(const Duration(milliseconds: 500));
     await Future.delayed(const Duration(milliseconds: 300));
-
+    game.input = '';
     tutorialMode = false;
     _isRunningTutorial = false;
     tutorialNodes.clear();

@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:audioplayers/audioplayers.dart';
 import 'package:lottie/lottie.dart';
 import 'package:provider/provider.dart';
+import 'package:word_puzzle/features/data/datasources/local_word_data.dart';
 import 'package:word_puzzle/features/presentation/controllers/game_controller.dart';
 
 class LevelSuccessPanel extends StatefulWidget {
@@ -72,7 +73,7 @@ class _LevelSuccessPanelState extends State<LevelSuccessPanel>
   @override
   Widget build(BuildContext context) {
     final game = context.watch<GameController>();
-    final isLast = game.levelIndex == game.levels.length - 1;
+    final isLast = game.levelIndex == levels.length - 1;
 
     return IgnorePointer(
       ignoring: !game.showLevelCompleteUI,

@@ -1,5 +1,4 @@
 import 'package:word_puzzle/core/di/app_component/app_component.config.dart';
-import 'package:word_puzzle/features/data/repositories/word_game_repository_impl.dart';
 import 'package:word_puzzle/features/domain/repositories/word_game_repository.dart';
 import 'package:word_puzzle/features/domain/usecases/check_word_usecase.dart';
 import 'package:get_it/get_it.dart';
@@ -11,9 +10,6 @@ final GetIt locator = GetIt.I;
 @InjectableInit(preferRelativeImports: false)
 Future<void> initAppComponentLocator() async => locator.init();
 void setupLocator() {
-  locator.registerLazySingleton<WordGameRepository>(
-    () => WordGameRepositoryImpl(),
-  );
   locator.registerLazySingleton(() => CheckWordUseCase(locator()));
 
   locator.registerLazySingleton(() => GameController());

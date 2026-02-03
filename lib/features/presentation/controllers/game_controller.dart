@@ -1,33 +1,29 @@
 import 'package:flutter/material.dart';
+import 'package:word_puzzle/features/data/datasources/local_word_data.dart';
+import 'package:word_puzzle/features/domain/entities/game_level.dart';
+import 'package:word_puzzle/features/domain/enum/tutorial_step_enum.dart';
 
-enum BackgroundTheme { sky, night, forest }
 
-enum TutorialStep { makeWord, showLevel, showScore, done }
 
-class GameLevel {
-  final List<String> letters;
-  final List<String> words;
-  GameLevel({required this.letters, required this.words});
-}
-
-class LetterNode {
-  String char;
-  final Offset offset;
-  bool selected = false;
-  LetterNode(this.char, this.offset);
-}
 
 class GameController extends ChangeNotifier {
-  BackgroundTheme theme = BackgroundTheme.sky;
-  void setTheme(BackgroundTheme t) {
-    theme = t;
+
+  bool isTutorialRunning = false;
+
+  void startTutorial() {
+    isTutorialRunning = true;
+    notifyListeners();
+  }
+
+  void endTutorial() {
+    isTutorialRunning = false;
     notifyListeners();
   }
 
   int tutorialPlayCount = 0;
-  final int maxTutorialPlays = 5;
-int makeWordRuns = 0;
-final int maxMakeWordRuns = 4;
+  final int maxTutorialPlays = 2;
+  int makeWordRuns = 0;
+  final int maxMakeWordRuns = 2;
 
   bool get hasTutorialPlayed => tutorialPlayCount >= maxTutorialPlays;
 
@@ -41,10 +37,10 @@ final int maxMakeWordRuns = 4;
   void advanceTutorial() {
     switch (tutorialStep) {
       case TutorialStep.makeWord:
-           makeWordRuns++;
-      if (makeWordRuns >= maxMakeWordRuns) {
-        tutorialStep = TutorialStep.showLevel;
-      }
+        makeWordRuns++;
+        if (makeWordRuns >= maxMakeWordRuns) {
+          tutorialStep = TutorialStep.showLevel;
+        }
         break;
       case TutorialStep.showLevel:
         tutorialStep = TutorialStep.showScore;
@@ -75,11 +71,7 @@ final int maxMakeWordRuns = 4;
     notifyListeners();
   }
 
-  final levels = [
-    GameLevel(letters: ["D", "O", "G"], words: ["DOG", "GOD", "ODG"]),
-    GameLevel(letters: ["C", "A", "T"], words: ["CAT", "ACT", "TAC"]),
-    GameLevel(letters: ["M", "O", "O", "N"], words: ["MOON", "MONO", "NOOM"]),
-  ];
+ 
   void shuffleLetters() {
     level.letters.shuffle();
     notifyListeners();

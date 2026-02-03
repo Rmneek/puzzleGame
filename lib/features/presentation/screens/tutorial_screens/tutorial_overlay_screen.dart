@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:word_puzzle/features/domain/enum/tutorial_step_enum.dart';
 import 'package:word_puzzle/features/presentation/controllers/game_controller.dart';
 import 'package:word_puzzle/features/presentation/screens/game_level.dart';
 import 'package:word_puzzle/features/presentation/screens/letter_wheel_screens/letter_wheel_screen.dart';
@@ -37,7 +38,13 @@ class _TutorialOverlayState extends State<TutorialOverlay> {
         if (!started) {
           started = true;
           WidgetsBinding.instance.addPostFrameCallback((_) async {
+            final game = context.read<GameController>();
+
+            game.startTutorial();
+            game.input = '';
             await wheelState.playTutorialWord(game.level.words.first);
+            game.input = '';
+            game.endTutorial();
             game.advanceTutorial();
             started = false;
           });

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:word_puzzle/features/presentation/controllers/game_controller.dart';
+import 'package:word_puzzle/features/domain/entities/letter_node.dart';
 
 class WheelPainter extends CustomPainter {
   final List<LetterNode> nodes;

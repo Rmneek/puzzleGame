@@ -1,3 +1,1 @@
-enum TutorialStep { welcome, letters, dropZone, hints, completed }
-
-enum AppMode { tutorial, gameplay }
+enum TutorialStep { makeWord, showLevel, showScore, done }

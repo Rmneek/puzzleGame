@@ -1,8 +1,7 @@
-import 'package:word_puzzle/features/domain/entities/word_level.dart';
+import 'package:word_puzzle/features/domain/entities/game_level.dart';
 
-final WordLevel mockLevels = WordLevel(
-  level: 1,
-  answer: 'FLUTTER',
-  letters: ["F", "L", "U", "T", "T", "E", "R"],
-  maxHints: 3,
-);
+final levels = [
+  GameLevel(letters: ["D", "O", "G"], words: ["DOG", "GOD", "ODG"]),
+  GameLevel(letters: ["C", "A", "T"], words: ["CAT", "ACT", "TAC"]),
+  GameLevel(letters: ["M", "O", "O", "N"], words: ["MOON", "MONO", "NOOM"]),
+];

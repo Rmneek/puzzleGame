@@ -24,7 +24,6 @@ class GameScreenState extends State<GameScreen> {
   final GlobalKey levelKey = GlobalKey();
 
   @override
-
   Widget build(BuildContext context) {
     final game = context.watch<GameController>();
 
@@ -60,16 +59,19 @@ class GameScreenState extends State<GameScreen> {
                           .toList(),
                     ),
                     const SizedBox(height: 12),
-                    AnimatedSwitcher(
-                      duration: const Duration(milliseconds: 200),
-                      child: Text(
-                        game.input,
-                        key: ValueKey(game.input),
-                        style: const TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          letterSpacing: 4,
-                          color: Colors.black87,
+                    Visibility(
+                      visible: !game.isTutorialRunning,
+                      child: AnimatedSwitcher(
+                        duration: const Duration(milliseconds: 200),
+                        child: Text(
+                          game.input,
+                          key: ValueKey(game.input),
+                          style: const TextStyle(
+                            fontSize: 28,
+                            fontWeight: FontWeight.bold,
+                            letterSpacing: 4,
+                            color: Colors.black87,
+                          ),
                         ),
                       ),
                     ),
@@ -120,7 +122,14 @@ class GameScreenState extends State<GameScreen> {
             ),
           ),
           const LevelSuccessPanel(),
-          TutorialOverlay(wheelKey: letterWheelKey),
+          if (!game.hasTutorialPlayed)
+            Positioned.fill(
+              child: AbsorbPointer(
+                absorbing: game.isTutorialRunning, 
+                child: TutorialOverlay(wheelKey: letterWheelKey),
+              ),
+            ),
+
         ],
       ),
     );
